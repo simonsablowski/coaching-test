@@ -9,7 +9,14 @@
 					</script>
 				</div>
 				<div id="InteractionResults" style="padding: 12px;">
-					<table/>
+					<table>
+						<tr>
+							<td>
+								<? echo $this->localize('Loading Interaction Results...'); ?>
+
+							</td>
+						</tr>
+					</table>
 				</div>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 				<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
@@ -37,7 +44,7 @@
 					jQuery.getJSON(baseServiceUrl + 'getInteractionResults', function(data) {
 						var items = [];
 						jQuery.each(data, function(key, value) {
-							items.push('<tr><td>' + key + '</td><td><table><tr><td>Data:</td><td>' + value.data + '</td></tr><tr><td>Value:</td><td>' + value.value + '</td></tr></table></td></tr>');
+							items.push('<tr><td>' + key + '</td><td><table><tr><td><? echo $this->localize('Data:'); ?></td><td>' + value.data + '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>' + value.value + '</td></tr></table></td></tr>');
 						});
 						jQuery('#InteractionResults table').replaceWith('<table class="decoded">' + items.join('') + '</table>');
 					});
