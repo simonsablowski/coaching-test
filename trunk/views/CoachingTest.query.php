@@ -40,13 +40,24 @@
 					});
 				}
 				
+				function formatData(data) {
+					var items = [];
+					jQuery.each(data, function(key, object) {
+						var item = '<tr><td>' + key + '</td><td>';
+						if (object.data != undefined) {
+							item += '<table><tr><td><? echo $this->localize('Data:'); ?></td><td>' + (typeof object.data == 'object' ? formatData(object.data) : object.data) + '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>' + object.value + '</td></tr></table>';
+						} else {
+							item += object;
+						}
+						item += '</td></tr>';
+						items.push(item);
+					});
+					return '<table class="decoded">' + items.join('') + '</table>';
+				}
+				
 				function showInteractionResults(baseServiceUrl) {
 					jQuery.getJSON(baseServiceUrl + 'getInteractionResults', function(data) {
-						var items = [];
-						jQuery.each(data, function(key, value) {
-							items.push('<tr><td>' + key + '</td><td><table><tr><td><? echo $this->localize('Data:'); ?></td><td>' + value.data + '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>' + value.value + '</td></tr></table></td></tr>');
-						});
-						jQuery('#InteractionResults table').replaceWith('<table class="decoded">' + items.join('') + '</table>');
+						jQuery('#InteractionResults table').replaceWith(formatData(data));
 					});
 				}
 				
