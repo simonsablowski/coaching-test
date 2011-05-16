@@ -43,9 +43,15 @@
 				function formatData(data) {
 					var items = [];
 					jQuery.each(data, function(key, object) {
-						var item = '<tr><td>' + key + '</td><td>';
-						if (object.data != undefined) {
-							item += '<table><tr><td><? echo $this->localize('Data:'); ?></td><td>' + (typeof object.data == 'object' ? formatData(object.data) : object.data) + '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>' + object.value + '</td></tr></table>';
+						var item = '<tr><td>';
+						item += typeof key == 'number' ? key + 1 : key;
+						item += '</td><td>';
+						if (typeof object.data != 'undefined') {
+							item += '<table><tr><td><? echo $this->localize('Data:'); ?></td><td>';
+							item += typeof object.data == 'object' ? formatData(object.data) : object.data;
+							item += '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>';
+							item += object.value;
+							item += '</td></tr></table>';
 						} else {
 							item += object;
 						}
