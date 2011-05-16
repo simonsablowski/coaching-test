@@ -11,7 +11,7 @@
 				<div id="InteractionResults" style="padding: 12px;">
 					
 				</div>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 				<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
 				<script type="text/javascript">
 				function MotivadoPlayer(config) {
@@ -33,25 +33,30 @@
 					});
 				}
 				
+				function showInteractionResults(baseServiceUrl) {
+					jQuery.getJSON(baseServiceUrl + 'getInteractionResults', function(data) {
+						var items = [];
+						jQuery.each(data, function(key, value) {
+							items.push('<tr><td>' + key + '</td><td><table><tr><td>Data:</td><td>' + value.data + '</td></tr><tr><td>Value:</td><td>' + value.value + '</td></tr></table></td></tr>');
+						});
+						jQuery('<table/>', {
+							class: 'decoded',
+							html: items.join('')
+						}).appendTo('#InteractionResults');
+					});
+				}
+				
 				jQuery(document).ready(function() {
 					MotivadoPlayer({
-						baseServiceUrl: 'http://tutodo.de/ui/',
+						baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/ui/',
 						baseVideoUrl: 'http://motivado.de/videos/',
-						basePlayerUrl: 'http://tutodo.de/player/',
+						basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
 						player: 'CoachingPlayer.swf',
 						product: '<? echo $product; ?>',
 						debugMode: 'true'
 					});
-				});
-				
-				jQuery.getJSON('http://tutodo.de/ui/getInteractionResults', function(data) {alert(data);
-					var items = [];
-					jQuery.each(data, function(key, value) {
-						items.push('<dt>' + key + '</dt><dd>' + value + '</dd>');
-					});
-					jQuery('<dl/>', {
-						html: items.join('')
-					}).appendTo('#InteractionResults');
+					
+					showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
 				});
 				</script>
 			</div>
