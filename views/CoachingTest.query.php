@@ -56,8 +56,7 @@
 						baseVideoUrl: 'http://motivado.de/videos/',
 						basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
 						player: 'CoachingPlayer.swf',
-						product: '<? echo $product; ?>',
-						debugMode: 'true'
+						product: '<? echo $product; ?>'
 					});
 					
 					setInterval(function() {
