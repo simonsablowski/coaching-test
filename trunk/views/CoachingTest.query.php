@@ -9,7 +9,7 @@
 					</script>
 				</div>
 				<div id="InteractionResults" style="padding: 12px;">
-					
+					<table/>
 				</div>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 				<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
@@ -39,10 +39,7 @@
 						jQuery.each(data, function(key, value) {
 							items.push('<tr><td>' + key + '</td><td><table><tr><td>Data:</td><td>' + value.data + '</td></tr><tr><td>Value:</td><td>' + value.value + '</td></tr></table></td></tr>');
 						});
-						jQuery('<table/>', {
-							class: 'decoded',
-							html: items.join('')
-						}).appendTo('#InteractionResults');
+						jQuery('#InteractionResults table').replaceWith('<table class="decoded">' + items.join('') + '</table>');
 					});
 				}
 				
@@ -56,7 +53,9 @@
 						debugMode: 'true'
 					});
 					
-					showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
+					setInterval(function() {
+						showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
+					}, 5000);
 				});
 				</script>
 			</div>
