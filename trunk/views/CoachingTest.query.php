@@ -78,9 +78,9 @@
 						product: '<? echo $product; ?>'
 					});
 					
-					// setInterval(function() {
+					setInterval(function() {
 						showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
-					// }, 5000);
+					}, 5000);
 				});
 				</script>
 			</div>
