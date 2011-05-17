@@ -43,16 +43,18 @@
 				function formatData(data) {
 					var items = [];
 					jQuery.each(data, function(key, object) {
-						var item = '<tr><td>';
+						var item = '<tr class="broad"><td>';
 						item += typeof key == 'number' ? key + 1 : key;
-						item += '</td><td>';
+						item += '</td>';
 						if (typeof object.data != 'undefined') {
-							item += '<table><tr><td><? echo $this->localize('Data:'); ?></td><td>';
+							item += '<td style="width: 75%;"><table style="width: 100%;"><thead class="head"><tr><th style="width: 50%;"><? echo $this->localize('Data'); ?></th><th><? echo $this->localize('Value'); ?></th></thead>';
+							item += '<tbody class="body"><tr><td>';
 							item += typeof object.data == 'object' ? formatData(object.data) : object.data;
-							item += '</td></tr><tr><td><? echo $this->localize('Value:'); ?></td><td>';
+							item += '</td><td>';
 							item += object.value;
-							item += '</td></tr></table>';
+							item += '</td></tr></tbody></table>';
 						} else {
+							item += '<td>';
 							item += object;
 						}
 						item += '</td></tr>';
@@ -76,9 +78,9 @@
 						product: '<? echo $product; ?>'
 					});
 					
-					setInterval(function() {
+					// setInterval(function() {
 						showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
-					}, 5000);
+					// }, 5000);
 				});
 				</script>
 			</div>
