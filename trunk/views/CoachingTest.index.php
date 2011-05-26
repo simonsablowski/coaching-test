@@ -1,10 +1,10 @@
-<? $this->displayView('components/header.php'); ?>
+<? $this->displayView('components/header.php', array('title' => 'Coaching Test')); ?>
 			<form action="<? echo $this->getConfiguration('baseUrl'); ?>" method="get">
 				<table class="content">
 					<thead class="head">
 						<tr>
 							<th class="field" colspan="2">
-								<? echo $this->localize('Coaching Test'); ?>
+								<? echo $this->localize('Coaching'); ?>
 
 							</td>
 						</tr>
@@ -16,7 +16,11 @@
 
 							</td>
 							<td>
-								<input type="text" name="CoachingKey" value="zieldefinition"/>
+								<select name="CoachingKey">
+<? foreach ($Coachings as $Coaching): ?>
+									<option value="<? echo $Coaching->getKey(); ?>"><? echo $Coaching->getKey(); ?><option>
+<? endforeach; ?>
+								</select>
 							</td>
 						</tr>
 					</tbody>

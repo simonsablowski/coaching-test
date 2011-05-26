@@ -1,4 +1,4 @@
-<? $this->displayView('components/header.php'); ?>
+<? $this->displayView('components/header.php', array('title' => $product)); ?>
 			<div class="content" style="width: 960px;">
 				<div id="MotivadoPlayer">
 					<p>

@@ -10,6 +10,6 @@
 	<body>
 		<div id="document">
 			<h1>
-				<? echo $this->localize('Coaching Test'); ?>
+				<? echo $this->localize($title); ?>
 
 			</h1>
