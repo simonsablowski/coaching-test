@@ -47,8 +47,10 @@
 						item += typeof key == 'number' ? key + 1 : key;
 						item += '</td>';
 						if (typeof object.data != 'undefined') {
-							item += '<td style="width: 75%;"><table style="width: 100%;"><thead class="head"><tr><th style="width: 50%;"><? echo $this->localize('Data'); ?></th><th><? echo $this->localize('Value'); ?></th></thead>';
-							item += '<tbody class="body"><tr><td>';
+							item += '<td style="width: 75%;"><table style="width: 100%;"><thead class="head"><tr>';
+							item += '<th style="width: 50%;"><? echo $this->localize('Data'); ?></th>';
+							item += '<th><? echo $this->localize('Value'); ?></th>';
+							item += '</thead><tbody class="body"><tr><td>';
 							item += typeof object.data == 'object' ? formatData(object.data) : object.data;
 							item += '</td><td>';
 							item += object.value;
