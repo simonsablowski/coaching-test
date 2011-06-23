@@ -3,7 +3,7 @@
 class CoachingTestController extends Controller {
 	public function index() {
 		return $this->displayView('CoachingTest.index.php', array(
-			'Coachings' => Coaching::findAll(NULL, array('key' => 'asc'))
+			'Coachings' => \Motivado\Api\Coaching::findAll(NULL, array('key' => 'asc'))
 		));
 	}
 	
