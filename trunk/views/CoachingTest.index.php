@@ -18,7 +18,7 @@
 							<td>
 								<select name="CoachingKey">
 <? foreach ($Coachings as $Coaching): ?>
-									<option value="<? echo $Coaching->getKey(); ?>"><? echo $Coaching->getKey(); ?><option>
+									<option value="<? echo $Coaching->getKey(); ?>"><? echo $Coaching->getKey(); ?></option>
 <? endforeach; ?>
 								</select>
 							</td>
