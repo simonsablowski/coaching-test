@@ -77,13 +77,26 @@
 						baseVideoUrl: 'http://motivado.de/videos/',
 						basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
 						player: 'CoachingPlayer.swf',
-						product: '<? echo $product; ?>'
+						product: '<? echo $product; ?>',
+						debugMode: 'true'
 					});
 					
-					setInterval(function() {
+					/*setInterval(function() {*/
 						showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
-					}, 5000);
+					/*}, 5000);*/
 				});
+				
+				function trackPageLoadTime() {
+					return true;
+				}
+				
+                                function trackPage() {
+                                        return true;
+                                }
+				
+                                function endCoaching() {
+                                        return true;
+                                }
 				</script>
 			</div>
 <? $this->displayView('components/footer.php'); ?>
