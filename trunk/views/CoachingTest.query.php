@@ -90,13 +90,13 @@
 					return true;
 				}
 				
-                                function trackPage() {
-                                        return true;
-                                }
+				function trackPage() {
+					return true;
+				}
 				
-                                function endCoaching() {
-                                        return true;
-                                }
+				function endCoaching() {
+					return true;
+				}
 				</script>
 			</div>
 <? $this->displayView('components/footer.php'); ?>
