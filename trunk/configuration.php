@@ -20,6 +20,6 @@ $configuration['Database'] = array(
 
 $configuration['baseUrl'] = 'http://localhost/coaching-test/';
 $configuration['cheeseUrl'] = 'http://localhost/cheese/';
-$configuration['host'] = 'http://motivado.local';
+$configuration['host'] = 'http://localhost';
 
 $configuration['debugMode'] = TRUE;
