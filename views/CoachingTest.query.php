@@ -18,85 +18,85 @@
 						</tr>
 					</table>
 				</div>
-				<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-				<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
-				<script type="text/javascript">
-				function MotivadoPlayer(config) {
-					if (config.product == undefined || config.baseServiceUrl == undefined) {
-						return alert('Missing required parameters!');
-					}
-					
-					jQuery('#' + (config.element || 'MotivadoPlayer')).flash({
-						swf: (config.basePlayerUrl || config.baseServiceUrl + 'player/') + (config.player || 'MotivadoPlayer.swf'),
-						width: config.width || 960,
-						height: config.height || 350,
-						flashvars: {
-							product: config.product,
-							baseServiceUrl: config.baseServiceUrl,
-							baseVideoUrl: config.baseVideoUrl || config.baseServiceUrl + 'videos/',
-							autoPlay: config.autoPlay || 'true',
-							debugMode: config.debugMode || 'false'
-						}
-					});
-				}
-				
-				function formatData(data) {
-					var items = [];
-					jQuery.each(data, function(key, object) {
-						var item = '<tr class="broad"><td>';
-						item += typeof key == 'number' ? key + 1 : key;
-						item += '</td>';
-						if (typeof object.data != 'undefined') {
-							item += '<td style="width: 75%;"><table style="width: 100%;"><thead class="head"><tr>';
-							item += '<th style="width: 50%;"><? echo $this->localize('Data'); ?></th>';
-							item += '<th><? echo $this->localize('Value'); ?></th>';
-							item += '</thead><tbody class="body"><tr><td>';
-							item += typeof object.data == 'object' ? formatData(object.data) : object.data;
-							item += '</td><td>';
-							item += object.value;
-							item += '</td></tr></tbody></table>';
-						} else {
-							item += '<td>';
-							item += object;
-						}
-						item += '</td></tr>';
-						items.push(item);
-					});
-					return '<table class="decoded">' + items.join('') + '</table>';
-				}
-				
-				function showInteractionResults(baseServiceUrl) {
-					jQuery.getJSON(baseServiceUrl + 'getInteractionResults', function(data) {
-						jQuery('#InteractionResults table').replaceWith(formatData(data));
-					});
-				}
-				
-				jQuery(document).ready(function() {
-					MotivadoPlayer({
-						baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/ui/',
-						baseVideoUrl: 'http://motivado.de/videos/',
-						basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
-						player: 'CoachingPlayer.swf',
-						product: '<? echo $product; ?>',
-						debugMode: 'true'
-					});
-					
-					/*setInterval(function() {*/
-						showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
-					/*}, 5000);*/
-				});
-				
-				function trackPageLoadTime() {
-					return true;
-				}
-				
-				function trackPage() {
-					return true;
-				}
-				
-				function endCoaching() {
-					return true;
-				}
-				</script>
 			</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
+<script type="text/javascript">
+function MotivadoPlayer(config) {
+	if (config.product == undefined || config.baseServiceUrl == undefined) {
+		return alert('Missing required parameters!');
+	}
+	
+	jQuery('#' + (config.element || 'MotivadoPlayer')).flash({
+		swf: (config.basePlayerUrl || config.baseServiceUrl + 'player/') + (config.player || 'MotivadoPlayer.swf'),
+		width: config.width || 960,
+		height: config.height || 350,
+		flashvars: {
+			product: config.product,
+			baseServiceUrl: config.baseServiceUrl,
+			baseVideoUrl: config.baseVideoUrl || config.baseServiceUrl + 'videos/',
+			autoPlay: config.autoPlay || 'true',
+			debugMode: config.debugMode || 'false'
+		}
+	});
+}
+
+function formatData(data) {
+	var items = [];
+	jQuery.each(data, function(key, object) {
+		var item = '<tr class="broad"><td>';
+		item += typeof key == 'number' ? key + 1 : key;
+		item += '</td>';
+		if (typeof object.data != 'undefined') {
+			item += '<td style="width: 75%;"><table style="width: 100%;"><thead class="head"><tr>';
+			item += '<th style="width: 50%;"><? echo $this->localize('Data'); ?></th>';
+			item += '<th><? echo $this->localize('Value'); ?></th>';
+			item += '</thead><tbody class="body"><tr><td>';
+			item += typeof object.data == 'object' ? formatData(object.data) : object.data;
+			item += '</td><td>';
+			item += object.value;
+			item += '</td></tr></tbody></table>';
+		} else {
+			item += '<td>';
+			item += object;
+		}
+		item += '</td></tr>';
+		items.push(item);
+	});
+	return '<table class="decoded">' + items.join('') + '</table>';
+}
+
+function showInteractionResults(baseServiceUrl) {
+	jQuery.getJSON(baseServiceUrl + 'getInteractionResults', function(data) {
+		jQuery('#InteractionResults table').replaceWith(formatData(data));
+	});
+}
+
+jQuery(document).ready(function() {
+	MotivadoPlayer({
+		baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/ui/',
+		baseVideoUrl: 'http://motivado.de/videos/',
+		basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
+		player: 'CoachingPlayer.swf',
+		product: '<? echo $product; ?>',
+		debugMode: 'true'
+	});
+	
+	setInterval(function() {
+		showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
+	}, 2500);
+});
+
+function trackPageLoadTime() {
+	return true;
+}
+
+function trackPage() {
+	return true;
+}
+
+function endCoaching() {
+	return true;
+}
+</script>
 <? $this->displayView('components/footer.php'); ?>
