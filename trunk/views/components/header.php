@@ -6,6 +6,7 @@
 		<title><? echo $this->localize('Coaching Test'); ?></title>
 		<base href="<? echo $this->getApplication()->getConfiguration('baseUrl'); ?>"/>
 		<link href="<? echo $this->getApplication()->getConfiguration('cheeseUrl'); ?>web/css/style.css" rel="stylesheet" title="Default" type="text/css" />
+		<script type="text/javascript" src="<? echo $this->getApplication()->getConfiguration('baseUrl'); ?>js/jquery.1.6.2.js"></script>
 	</head>
 	<body>
 		<div id="document">
