@@ -19,8 +19,7 @@
 					</table>
 				</div>
 			</div>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
+<script type="text/javascript" src="<? echo $this->getApplication()->getConfiguration('baseUrl'); ?>js/jquery.swfobject.1-1-1.min.js"></script>
 <script type="text/javascript">
 function MotivadoPlayer(config) {
 	if (config.product == undefined || config.baseServiceUrl == undefined) {
