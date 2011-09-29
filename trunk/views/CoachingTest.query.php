@@ -27,13 +27,14 @@ function MotivadoPlayer(config) {
 	}
 	
 	jQuery('#' + (config.element || 'MotivadoPlayer')).flash({
-		swf: (config.basePlayerUrl || config.baseServiceUrl + 'player/') + (config.player || 'MotivadoPlayer.swf'),
+		swf: (config.basePlayerUrl || config.baseServiceUrl + 'player/') + (config.player || 'CoachingPlayer.swf'),
 		width: config.width || 960,
 		height: config.height || 350,
 		flashvars: {
 			product: config.product,
 			baseServiceUrl: config.baseServiceUrl,
 			baseVideoUrl: config.baseVideoUrl || config.baseServiceUrl + 'videos/',
+			baseAssetUrl: config.baseAssetUrl || config.baseServiceUrl + 'player/assets/',
 			autoPlay: config.autoPlay || 'true',
 			debugMode: config.debugMode || 'false'
 		}
@@ -57,12 +58,12 @@ function formatData(data) {
 			item += '</td></tr></tbody></table>';
 		} else {
 			item += '<td>';
-			item += object;
+			item += typeof object == 'object' ? formatData(object) : object;
 		}
 		item += '</td></tr>';
 		items.push(item);
 	});
-	return '<table class="decoded">' + items.join('') + '</table>';
+	return '<table class="decoded" style="width: 100%;">' + items.join('') + '</table>';
 }
 
 function showInteractionResults(baseServiceUrl) {
@@ -73,16 +74,16 @@ function showInteractionResults(baseServiceUrl) {
 
 jQuery(document).ready(function() {
 	MotivadoPlayer({
-		baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/ui/',
-		baseVideoUrl: 'http://motivado.de/videos/',
+		baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/motivado-ui/',
+		baseVideoUrl: 'http://videos.motivado.de/',
 		basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
-		player: 'CoachingPlayer.swf',
+		baseAssetUrl: '<? echo $this->getConfiguration('host'); ?>/player/assets/',
 		product: '<? echo $product; ?>',
 		debugMode: 'true'
 	});
 	
 	setInterval(function() {
-		showInteractionResults('<? echo $this->getConfiguration('host'); ?>/ui/');
+		showInteractionResults('<? echo $this->getConfiguration('host'); ?>/motivado-ui/');
 	}, 2500);
 });
 
