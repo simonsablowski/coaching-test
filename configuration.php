@@ -6,20 +6,23 @@ $configuration['pathApplication'] = dirname(__FILE__) . '/';
 
 $configuration['includeDirectories'] = array(
 	$configuration['pathApplication'],
-	'D:/Entwicklung/api/',
-	'D:/Entwicklung/nacho/'
+	$configuration['pathApplication'] . '../motivado-api/',
+	$configuration['pathApplication'] . '../nacho/'
 );
 
 $configuration['Database'] = array(
 	'type' => 'MySql',
 	'host' => 'localhost',
-	'name' => 'motivado_importer',
-	'user' => 'root',
+	'name' => 'motivado_api',
+	'user' => 'motivado',
 	'password' => ''
 );
 
-$configuration['baseUrl'] = 'http://localhost/coaching-test/';
-$configuration['cheeseUrl'] = 'http://localhost/cheese/';
 $configuration['host'] = 'http://localhost';
+$configuration['baseUrl'] = $configuration['host'] . '/motivado-test/';
+$configuration['cheeseUrl'] = $configuration['host'] . '/cheese/';
+$configuration['playerUrl'] = $configuration['host'] . '/motivado-player/';
+$configuration['videoUrl'] = $configuration['host'] . '/motivado-videos/';
+$configuration['uiUrl'] = $configuration['host'] . '/motivado-ui/';
 
 $configuration['debugMode'] = TRUE;
