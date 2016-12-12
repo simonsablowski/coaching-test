@@ -74,16 +74,16 @@ function showInteractionResults(baseServiceUrl) {
 
 jQuery(document).ready(function() {
 	MotivadoPlayer({
-		baseServiceUrl: '<? echo $this->getConfiguration('host'); ?>/motivado-ui/',
-		baseVideoUrl: 'http://videos.motivado.de/',
-		basePlayerUrl: '<? echo $this->getConfiguration('host'); ?>/player/',
-		baseAssetUrl: '<? echo $this->getConfiguration('host'); ?>/player/assets/',
-		product: '<? echo $product; ?>',
+		baseServiceUrl: '<? echo $this->getConfiguration('uiUrl'); ?>',
+		baseVideoUrl: '<? echo $this->getConfiguration('videoUrl'); ?>',
+		basePlayerUrl: '<? echo $this->getConfiguration('playerUrl'); ?>',
+		baseAssetUrl: '<? echo $this->getConfiguration('playerUrl'); ?>assets/',
+		product: '<? echo $product; ?>'
 		debugMode: 'true'
 	});
 	
 	setInterval(function() {
-		showInteractionResults('<? echo $this->getConfiguration('host'); ?>/motivado-ui/');
+		showInteractionResults('<? echo $this->getConfiguration('uiUrl'); ?>');
 	}, 2500);
 });
 
